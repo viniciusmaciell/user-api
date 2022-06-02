@@ -2,7 +2,6 @@ package com.letscode.ecommerce.userapi.controller;
 
 import com.letscode.ecommerce.userapi.domain.UserEntity;
 import com.letscode.ecommerce.userapi.domain.UserRequest;
-import com.letscode.ecommerce.userapi.domain.UserRequestAllInfo;
 import com.letscode.ecommerce.userapi.domain.UserResponse;
 import com.letscode.ecommerce.userapi.service.UserService;
 import lombok.AllArgsConstructor;
@@ -36,15 +35,6 @@ public class UserController {
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAll());
     }
-
-
-//    @GetMapping("/{id}") // todo
-//    public ResponseEntity<UserEntity> getById(@PathVariable(value = "id") Long userId,
-//                                              @RequestBody UserRequest userRequest) {
-//
-//        return ResponseEntity.status(HttpStatus.OK).body(userService.getOne(userId, userRequest));
-//    }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<UserEntity> getUser(@PathVariable(value = "id") Long userId) {

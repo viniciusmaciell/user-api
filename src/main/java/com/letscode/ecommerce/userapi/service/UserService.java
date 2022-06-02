@@ -21,7 +21,6 @@ public class UserService {
 
 
     public UserResponse save(UserRequest userRequest) {
-//        Optional<UserEntity> userEntityOptional = userRepository.findByEmail(userRequest.getEmail());
         if (!userRepository.existsByEmail(userRequest.getEmail())) {
 
             UserEntity userEntity = new UserEntity();
@@ -37,7 +36,7 @@ public class UserService {
             return userResponse;
 
         }
-        throw new RuntimeException("Not found"); //todo
+        throw new RuntimeException("Not found.");
 
     }
 
@@ -51,13 +50,10 @@ public class UserService {
 
             BeanUtils.copyProperties(userEntity, userResponse);
             userResponseList.add(userResponse);
-
         }
-
 
         return userResponseList;
     }
-
 
     public UserEntity getOne(Long id, UserRequest userRequest) {
 
@@ -72,10 +68,10 @@ public class UserService {
     public UserResponse updateUser(Long id, UserRequest userRequest) {
 
         Optional<UserEntity> userEntityOptional = userRepository.findById(id);
-        userEntityOptional.orElseThrow(RuntimeException::new); //todo impl exessao
+        userEntityOptional.orElseThrow(RuntimeException::new);
 
         if (!userRepository.existsByEmailAndPassword(userRequest.getEmail(), userRequest.getPassword())) {
-            throw new RuntimeException(); // todo impl excessao
+            throw new RuntimeException();
         }
 
         UserEntity user = new UserEntity();
@@ -86,15 +82,14 @@ public class UserService {
         UserResponse userUpdate = new UserResponse();
         BeanUtils.copyProperties(user, userUpdate);
         return userUpdate;
-
     }
 
     public String deleteUser(Long id, UserRequest userRequest) {
         Optional<UserEntity> userEntityOptional = userRepository.findById(id);
-        UserEntity user = userEntityOptional.orElseThrow(RuntimeException::new); //todo impl exessao
+        UserEntity user = userEntityOptional.orElseThrow(RuntimeException::new);
 
         if (!userRepository.existsByEmailAndPassword(userRequest.getEmail(), userRequest.getPassword())) {
-            throw new RuntimeException(); // todo impl excessao
+            throw new RuntimeException();
         }
 
         userRepository.delete(user);
