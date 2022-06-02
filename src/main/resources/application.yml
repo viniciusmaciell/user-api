@@ -8,7 +8,7 @@ spring:
     url: jdbc:mysql://user-mysql/users
     password: root
   application:
-    name: users-service
+    name: users-api-instance
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
